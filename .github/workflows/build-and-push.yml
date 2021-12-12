@@ -19,6 +19,12 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - 
+        name: Set current date as env variable
+        run: echo "CurrentTime::$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+      - 
+        name: Echo current date
+        run: echo $CurrentTime
       -
         name: Checkout
         uses: actions/checkout@v2
@@ -42,4 +48,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/python-helloworld:$(date+%s)
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/python-helloworld:$CurrentTime
