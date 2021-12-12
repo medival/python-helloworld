@@ -22,14 +22,14 @@ jobs:
       - 
         name: Get Current Time
         uses: 1466587594/get-current-time@v2.0.0
-
-      -
-        name: Checkout
-        uses: actions/checkout@v2
         id: current-time
         with:
           format: YYYYMMDD-HH
           utcOffset: "+07:00"
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+        
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
