@@ -50,4 +50,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/python-helloworld:echo $current-time
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/python-helloworld:$current-time
