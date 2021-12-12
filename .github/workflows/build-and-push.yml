@@ -20,14 +20,16 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - 
-        name: Set current date as env variable
-        run: echo "CurrentTime::$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
-      - 
-        name: Echo current date
-        run: echo $CurrentTime
+        name: Get Current Time
+        uses: 1466587594/get-current-time@v2.0.0
+
       -
         name: Checkout
         uses: actions/checkout@v2
+        id: current-time
+        with:
+          format: YYYYMMDD-HH
+          utcOffset: "+07:00"
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -48,4 +50,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/python-helloworld:$CurrentTime
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/python-helloworld:echo $current-time
